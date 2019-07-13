@@ -9,7 +9,7 @@ function printAvNachweis($pdf,$data, $postData, $sessionData, $datumArr){
     $pdf->Cell(80,10,dec("Lehrgangsdauer in Monaten: 21"),1); //280 maxwidth
 
 }
-
+echo 'TEst123';
 
 function dec($string){
    $string = iconv('utf-8', 'cp1252',$string);

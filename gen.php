@@ -26,9 +26,6 @@ if(!empty($_POST)){
                                 <input type="text" class="form-control" id="kw"  value="<?=$kalendarWoche ?>" name="kw" required >
                             </div>
                         </div>
-                        
-                        
-                        
                     </div>
 
                     <div class="row">

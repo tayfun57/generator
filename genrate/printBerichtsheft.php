@@ -8,38 +8,51 @@ function printBerichtsheft($pdf,$data, $postData, $sessionData, $datumArr){
   $pdf->Cell(90,10,'AUSBILDUNGSNACHWEIS',1,0,'C',false);
   $pdf->SetFont('Helvetica','B',10);
   $pdf->Cell(40,10, iconv('utf-8', 'cp1252','Klasse/Maßnahme'),1,0,'C',false);
+  $pdf->SetFont('Helvetica','',10);
   $pdf->Cell(50,10,'IT44',1,0,'L',false);
   $pdf->Ln();
 
   //Name & KW Zeile
+  $pdf->SetFont('Helvetica','B',10);
   $pdf->Cell(40,10,'Name:',1,0,'L',false);
+  $pdf->SetFont('Helvetica','',10);
   $pdf->Cell(50,10,$name,1,0,'L',false);
+  $pdf->SetFont('Helvetica','B',10);
   $pdf->Cell(40,10,'KW:',1,0,'L',false);
+  $pdf->SetFont('Helvetica','',10);
   $pdf->Cell(50,10,$postData['kw'],1,0,'L',false);
   $pdf->Ln();
 
   //Ausbildungsjahr & Nachweis-Nr
+  $pdf->SetFont('Helvetica','B',10);
   $pdf->Cell(40,10,'Ausbildungsjahr:',1,0,'L',false);
+  $pdf->SetFont('Helvetica','',10);
   $pdf->Cell(50,10,1,1,0,'L',false);
+  $pdf->SetFont('Helvetica','B',10);
   $pdf->Cell(40,10,'Nachweis-Nr.:',1,0,'L',false);
+  $pdf->SetFont('Helvetica','',10);
   $pdf->Cell(50,10,1,1,0,'L',false);
   $pdf->Ln();
 
   //Beruf & Von-Bis
-
+  $pdf->SetFont('Helvetica','B',10);
   $pdf->Cell(40,10,'Beruf:',1,0,'L',false);
-  $pdf->SetFont('Helvetica','B',7);
+  $pdf->SetFont('Helvetica','',10);
   $pdf->Cell(50,10,$sessionData['fachrichtung'],1,0,'L',false);
   $pdf->SetFont('Helvetica','B',10);
   $pdf->Cell(40,5,'Vom',1,0,'L',false);
+  $pdf->SetFont('Helvetica','',10);
   $pdf->Cell(50,5,$datumArr['week_start'],1,0,'L',false);
   $pdf->Ln();
   $pdf->SetLeftMargin(100);
+  $pdf->SetFont('Helvetica','B',10);
   $pdf->Cell(40,5,'Bis',1,0,'L',false);
+  $pdf->SetFont('Helvetica','',10);
   $pdf->Cell(50,5,$datumArr['week_end'],1,0,'L',false);
   $pdf->SetLeftMargin(10);
   $pdf->Ln();
 
+  $pdf->SetFont('Helvetica','B',10);
   $pdf->Cell(20.75,5,'Tag',1,0,'L',false);
   $pdf->Cell(69.25,5,iconv('utf-8', 'cp1252','Ausgeführte Arbeiten, Unterricht usw.'),1,0,'L',false);
   $pdf->Cell(30.75,5,'Dozent',1,0,'L',false);
@@ -48,15 +61,15 @@ function printBerichtsheft($pdf,$data, $postData, $sessionData, $datumArr){
 
   //Themen fürr Montag
   $tag = "Montag";
-  printThema($pdf,$tag,$data["headingMontag"], $data["montag1"], $data["montag2"], 2);
+  printThema($pdf,$tag,$data["headingMontag"], $data["montag1"], $data["montag2"], 0);
 
   //Themen fürr Dienstag
   $tag = "Dienstag";
-  printThema($pdf,$tag,$data["headingDienstag"], $data["dienstag1"], $data["dienstag2"], 2);
+  printThema($pdf,$tag,$data["headingDienstag"], $data["dienstag1"], $data["dienstag2"], 0);
 
   //Themen fürr Mittwoch
   $tag = "Mittwoch";
-  printThema($pdf,$tag,$data["headingMittwoch"], $data["mittwoch1"], $data["mittwoch2"], 2);
+  printThema($pdf,$tag,$data["headingMittwoch"], $data["mittwoch1"], $data["mittwoch2"], 0);
 
   //Themen fürr Donnerstag
   $tag = "Donnerstag";
@@ -64,17 +77,19 @@ function printBerichtsheft($pdf,$data, $postData, $sessionData, $datumArr){
 
   //Themen fürr Freitag
   $tag = "Freitag";
-  printThema($pdf,$tag,$data["headingFreitag"], $data["freitag1"], $data["freitag2"], 2);
+  printThema($pdf,$tag,$data["headingFreitag"], $data["freitag1"], $data["freitag2"], 0);
 
   $pdf->Ln();
   $pdf->Ln();
   
-
+  //Datum und Unterschrift
   $pdf->Cell(87.5,15, "Datum",1,0,"L");
   $pdf->Cell(5,15, "", 1, 0, "L");
   $pdf->Cell(87.5,15, "Datum",1,0,"L");
   $pdf->ln();
 
+  //Letzte Zeile 
+  $pdf->SetFont('Helvetica','B',10);
   $pdf->Cell(87.5,5, "Datum/ Unterschrift Teilnehmer",1,0,"L");
   $pdf->Cell(5,5, "", 1, 0, "L");
   $pdf->Cell(87.5,5, "Datum/ Unterschrift Ausbilder",1,0,"L");
@@ -82,11 +97,14 @@ function printBerichtsheft($pdf,$data, $postData, $sessionData, $datumArr){
 
 //Themenzeile ausgeben
 function printThema($pdf,$tag,$heading, $thema1, $thema2, $thema3){
+    $pdf->SetFont('Helvetica','B',10);
     $pdf->Cell(20.75,25,$tag,1,0,'C',false);
+    $pdf->SetFont('Helvetica','',10);
     $y = $pdf->GetY();
     $x = $pdf->GetX();
     $width = 69.25;
-    if($thema3 == 2){
+    if($thema3 === 0){
+      
       $pdf->MultiCell($width,5,'Thema: ' . iconv('utf-8', 'cp1252',$heading) .
       "\n\n"   . iconv('utf-8', 'cp1252','•') . " " .
       iconv('utf-8', 'cp1252',$thema1) . "\n" . iconv('utf-8', 'cp1252','•') . " " . iconv('utf-8', 'cp1252',$thema2) .

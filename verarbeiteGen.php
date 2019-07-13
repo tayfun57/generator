@@ -33,7 +33,8 @@ function getStartAndEndDate($week, $year) {
 
 
   //Datensatz aus der Datenbank holen
-function getDatafromDb($kw,$jahr,$conn){
+
+  function getDatafromDb($kw,$jahr,$conn){
   try {
       $stmt = $conn->prepare("SELECT * FROM themen WHERE kw = :kw AND jahr = :jahr");
       $stmt->bindParam('kw', $kw);
@@ -47,8 +48,4 @@ function getDatafromDb($kw,$jahr,$conn){
   $conn = null;
   return $data;
   }
-  
-  
 ?>
-
-

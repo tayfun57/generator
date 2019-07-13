@@ -1,8 +1,6 @@
 <?php
-function printBerichtsheft($conn,$data, $postData, $sessionData, $datumArr){
+function printBerichtsheft($pdf,$data, $postData, $sessionData, $datumArr){
   $name = $_SESSION['vorName'] . " " . $_SESSION['nachName']; // Name des Benutzers
-
-  $pdf = new FPDF('P','mm','A4'); //inizialisierung des FPDF Objektes
   $pdf->AddPage(); // Neue Seite hinzufügen
 
   //Ausbildungsnachweis & Klasse/Maßname Zeile
@@ -80,7 +78,6 @@ function printBerichtsheft($conn,$data, $postData, $sessionData, $datumArr){
   $pdf->Cell(87.5,5, "Datum/ Unterschrift Teilnehmer",1,0,"L");
   $pdf->Cell(5,5, "", 1, 0, "L");
   $pdf->Cell(87.5,5, "Datum/ Unterschrift Ausbilder",1,0,"L");
-  $pdf->Output(); 
 }
 
 //Themenzeile ausgeben

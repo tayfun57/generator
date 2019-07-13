@@ -2,6 +2,7 @@
 include('./session.php'); // Session 
 include('./dbconfig.php'); // Datenbankanbindung
 include('./genrate/printBerichtsheft.php'); //import der function printberichtsheft
+include('./genrate/printAvNachweis.php');
 require_once('./fpdf/fpdf.php'); //importieren der fpdf bibliothek
 
 $sessionData = $_SESSION; // speichern der Session Daten
@@ -14,11 +15,11 @@ $postData = [   //sichern der POST Daten in einem Array
 
 $data = getDatafromDb($postData['kw'],$postData['jahr'],$conn); //Array für die Daten die aus der Datenbank kommen
 $datumArr = getStartAndEndDate($postData['kw'],$postData['jahr']); //Start und Enddatum der Woche 
+$pdf = new FPDF('P','mm','A4'); //inizialisierung des FPDF Objektes
 
-
-printBerichtsheft($conn,$data, $postData, $sessionData, $datumArr);
-
-
+printBerichtsheft($pdf,$data, $postData, $sessionData, $datumArr);
+printAvNachweis($pdf,$data,$postData,$sessionData,$datumArr);
+$pdf->Output();
 
 //Funktion um aus KW und Jahr das Montags und Freitagsdatum zu ermitteln
 function getStartAndEndDate($week, $year) {

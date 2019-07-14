@@ -20,14 +20,13 @@ include_once('./header.php');
     </div>
   
    
-        <img src="https://belikebill.ga/billgen-API.php?default=1" />
+    <img src="https://belikebill.ga/billgen-API.php?default=1" />
    
 
 
 <script>
 window.onload = function () {
     getWitz()
-    getFact()
 }
 
 function getWitz(){

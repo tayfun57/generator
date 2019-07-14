@@ -28,14 +28,12 @@
             </li>
           </ul>
         </div>
+
         <?php
         if(!empty($_SESSION['vorName'])){
           echo ('<div class="form-inline my-2 my-lg-1 ">');
-          echo  ('<p class="text-secondary pt-2"><strong>Willkommen, ' .  $_SESSION['vorName'] . ' <a href="./logout.php">Logout</a> </strong></p>)');
-
+            echo  ('<p class="text-secondary pt-2"><strong>Willkommen, ' .  $_SESSION['vorName'] . ' <a href="./logout.php">Logout</a> </strong></p>)');
           echo ('</div>');
         }
-
-
         ?>
-      </nav>
+</nav>

@@ -1,6 +1,6 @@
 <?php
 function printBerichtsheft($pdf,$data, $postData, $sessionData, $datumArr){
-  $name = $_SESSION['vorName'] . " " . $_SESSION['nachName']; // Name des Benutzers
+  $name = iconv('utf-8', 'cp1252',$_SESSION['vorName'] . " " . $_SESSION['nachName']); // Name des Benutzers
   $pdf->AddPage(); // Neue Seite hinzufügen
 
   //Ausbildungsnachweis & Klasse/Maßname Zeile
@@ -93,7 +93,7 @@ function printBerichtsheft($pdf,$data, $postData, $sessionData, $datumArr){
   $pdf->Cell(87.5,5, "Datum/ Unterschrift Teilnehmer",1,0,"L");
   $pdf->Cell(5,5, "", 1, 0, "L");
   $pdf->Cell(87.5,5, "Datum/ Unterschrift Ausbilder",1,0,"L");
-  ++$GLOBALS['punkte'];
+  $GLOBALS['punkte']--;
 }
 
 //Themenzeile ausgeben

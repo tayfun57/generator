@@ -34,8 +34,4 @@ fetch('http://api.icndb.com/jokes/random?')
   .then(response => response.json())
   .then(json => document.getElementById('witz').innerHTML = json.value.joke)
 }
-
-
-
-
 </script>

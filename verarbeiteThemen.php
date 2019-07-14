@@ -1,8 +1,9 @@
 <?php
 include_once('./session.php');
 include_once("./dbconfig.php");
+include_once('./punkte.php');
 
-
+$punkte = 18;
 
 try {
 
@@ -60,7 +61,7 @@ try {
     $freitag1 = $_POST["freitag1"];
     $freitag2 = $_POST["freitag2"];
 
-    $author = "test";
+    $author = $_SESSION['vorName'] . ' ' . $_SESSION['nachName'];
 
     // DATEN IN DATENBANK SPEICHERN
     $stmt->execute();
@@ -73,6 +74,10 @@ catch(PDOException $e)
     {
     echo "Fehler, bitte an Admin mit der genauen Fehlerbeschreibung wenden: " . $e->getMessage();
     }
-$conn = null;
+    //Punkte setzen nach erfolgreichen hinzufügen des Datensatzes;
+    setPunkte($conn,$_SESSION,$punkte);
+    
+    $conn = null;
+
 ?>
 

@@ -1,6 +1,6 @@
 <?php
-require("./session.php");
-require("./header.php"); //Navbar hinzufügen
+require_once("./session.php");
+require_once("./header.php"); //Navbar hinzufügen
 
 $jahr = date("Y");
 $kalendarWoche = date("W");

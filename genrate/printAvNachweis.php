@@ -15,8 +15,8 @@ function printAvNachweis($pdf,$data, $postData, $sessionData, $datumArr){
     //Woche von - bis / Vorname und Nachname
     $pdf->SetFont('Helvetica','B',12);
     $pdf->Cell(95,7.5,'Woche vom/bis:', 1);
-    $pdf->Cell(95,7.5,'Vorname:', 1);
-    $pdf->Cell(90,7.5,'Name:', 1);
+    $pdf->Cell(95,7.5,dec('Vorname:'), 1);
+    $pdf->Cell(90,7.5,dec('Name:'), 1);
     $pdf->Ln();
 
     $pdf->SetFont('Helvetica','',11);
@@ -64,7 +64,7 @@ function printAvNachweis($pdf,$data, $postData, $sessionData, $datumArr){
     $tag = "Freitag";
     printThemenAv($pdf,$tag,$data["headingFreitag"], $data["freitag1"], $data["freitag2"], 0);
 
-    ++$GLOBALS['punkte'];
+    $GLOBALS['punkte']--;
 
 }
 

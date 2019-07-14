@@ -1,8 +1,9 @@
 <?php
-include('./session.php'); // Session 
-include('./dbconfig.php'); // Datenbankanbindung
-include('./genrate/printBerichtsheft.php'); //import der function printberichtsheft
-include('./genrate/printAvNachweis.php');
+include_once('./session.php'); // Session 
+include_once('./dbconfig.php'); // Datenbankanbindung
+include_once('./genrate/printBerichtsheft.php'); //import der function printberichtsheft
+include_once('./genrate/printAvNachweis.php');
+include_once('./punkte.php'); // Biliothek um die Punkte zu setzen
 require_once('./fpdf/fpdf.php'); //importieren der fpdf bibliothek
 
 $sessionData = $_SESSION; // speichern der Session Daten
@@ -62,24 +63,6 @@ function getStartAndEndDate($week, $year) {
   return $data;
   }
 
-
-//Punkte abziehen
-function setPunkte($conn, $sessionData,$punkte){
-  $boolResult;
-  try {
-    $stmt = $conn->prepare("UPDATE user SET punkte = punkte - :punkte WHERE id = :id");
-    $stmt->bindParam('punkte', $punkte);
-    $stmt->bindParam('id', $sessionData['userid']);
-    $stmt->execute();
-} catch(PDOException $e)
-{
-echo "Fehler, bitte an Admin mit der genauen Fehlerbeschreibung wenden: " . $e->getMessage();
-$boolResult = false;
-}
-$conn = null;
-$boolResult = true;
-return $boolResult;
-}
 
 
 ?>

@@ -2,6 +2,7 @@
 include('./session.php'); // Session 
 include('./dbconfig.php'); // Datenbankanbindung
 include('./genrate/printBerichtsheft.php'); //import der function printberichtsheft
+include('./genrate/printAvNachweis.php');
 require_once('./fpdf/fpdf.php'); //importieren der fpdf bibliothek
 
 $sessionData = $_SESSION; // speichern der Session Daten
@@ -14,11 +15,24 @@ $postData = [   //sichern der POST Daten in einem Array
 
 $data = getDatafromDb($postData['kw'],$postData['jahr'],$conn); //Array für die Daten die aus der Datenbank kommen
 $datumArr = getStartAndEndDate($postData['kw'],$postData['jahr']); //Start und Enddatum der Woche 
+$pdf = new FPDF('P','mm','A4'); //inizialisierung des FPDF Objektes
+$punkte = 0;
 
+//Selektion welche Nachweise ausgegeben werden
+if(isset($postData['abNachweis']) && isset($postData['avNachweis'])){
+  printBerichtsheft($pdf,$data, $postData, $sessionData, $datumArr);
+  printAvNachweis($pdf,$data,$postData,$sessionData,$datumArr);
+}elseif(isset($postData['avNachweis'])){ 
+  printAvNachweis($pdf,$data,$postData,$sessionData,$datumArr);
+}elseif(isset($postData['abNachweis'])){
+  printBerichtsheft($pdf,$data, $postData, $sessionData, $datumArr);
+}else{
+  printBerichtsheft($pdf,$data, $postData, $sessionData, $datumArr);
+  printAvNachweis($pdf,$data,$postData,$sessionData,$datumArr);
+}
 
-printBerichtsheft($conn,$data, $postData, $sessionData, $datumArr);
-
-
+setPunkte($conn,$sessionData,$punkte);
+$pdf->Output();
 
 //Funktion um aus KW und Jahr das Montags und Freitagsdatum zu ermitteln
 function getStartAndEndDate($week, $year) {
@@ -32,7 +46,8 @@ function getStartAndEndDate($week, $year) {
 
 
   //Datensatz aus der Datenbank holen
-function getDatafromDb($kw,$jahr,$conn){
+
+  function getDatafromDb($kw,$jahr,$conn){
   try {
       $stmt = $conn->prepare("SELECT * FROM themen WHERE kw = :kw AND jahr = :jahr");
       $stmt->bindParam('kw', $kw);
@@ -46,8 +61,25 @@ function getDatafromDb($kw,$jahr,$conn){
   $conn = null;
   return $data;
   }
-  
-  
+
+
+//Punkte abziehen
+function setPunkte($conn, $sessionData,$punkte){
+  $boolResult;
+  try {
+    $stmt = $conn->prepare("UPDATE user SET punkte = punkte - :punkte WHERE id = :id");
+    $stmt->bindParam('punkte', $punkte);
+    $stmt->bindParam('id', $sessionData['userid']);
+    $stmt->execute();
+} catch(PDOException $e)
+{
+echo "Fehler, bitte an Admin mit der genauen Fehlerbeschreibung wenden: " . $e->getMessage();
+$boolResult = false;
+}
+$conn = null;
+$boolResult = true;
+return $boolResult;
+}
+
+
 ?>
-
-

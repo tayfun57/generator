@@ -1,8 +1,8 @@
 <?php
 session_start();
-
+$location = "./login.php";
 if(empty($_SESSION['userid'])){
-  header("Location: ./login.php");
+  header("Location: " . $location);
   exit; 
 }
 

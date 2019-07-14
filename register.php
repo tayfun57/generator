@@ -120,11 +120,7 @@ if($showFormular) {
                             </div>
                     </div>
                 </div>
-            </div>
-
- 
+            </div> 
 <?php
 } //Ende von if($showFormular)
 ?>
-
-

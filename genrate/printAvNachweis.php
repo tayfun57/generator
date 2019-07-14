@@ -1,4 +1,6 @@
 <?php
+
+//Funktion um das PDF Dokument zu generieren
 function printAvNachweis($pdf,$data, $postData, $sessionData, $datumArr){
     $name = $_SESSION['vorName'] . " " . $_SESSION['nachName']; // Name des Benutzers
     $pdf->AddPage('L'); // Neue Seite hinzufügen
@@ -62,6 +64,7 @@ function printAvNachweis($pdf,$data, $postData, $sessionData, $datumArr){
     $tag = "Freitag";
     printThemenAv($pdf,$tag,$data["headingFreitag"], $data["freitag1"], $data["freitag2"], 0);
 
+    ++$GLOBALS['punkte'];
 
 }
 

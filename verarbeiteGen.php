@@ -16,9 +16,22 @@ $postData = [   //sichern der POST Daten in einem Array
 $data = getDatafromDb($postData['kw'],$postData['jahr'],$conn); //Array für die Daten die aus der Datenbank kommen
 $datumArr = getStartAndEndDate($postData['kw'],$postData['jahr']); //Start und Enddatum der Woche 
 $pdf = new FPDF('P','mm','A4'); //inizialisierung des FPDF Objektes
+$punkte = 0;
 
-printBerichtsheft($pdf,$data, $postData, $sessionData, $datumArr);
-printAvNachweis($pdf,$data,$postData,$sessionData,$datumArr);
+//Selektion welche Nachweise ausgegeben werden
+if(isset($postData['abNachweis']) && isset($postData['avNachweis'])){
+  printBerichtsheft($pdf,$data, $postData, $sessionData, $datumArr);
+  printAvNachweis($pdf,$data,$postData,$sessionData,$datumArr);
+}elseif(isset($postData['avNachweis'])){ 
+  printAvNachweis($pdf,$data,$postData,$sessionData,$datumArr);
+}elseif(isset($postData['abNachweis'])){
+  printBerichtsheft($pdf,$data, $postData, $sessionData, $datumArr);
+}else{
+  printBerichtsheft($pdf,$data, $postData, $sessionData, $datumArr);
+  printAvNachweis($pdf,$data,$postData,$sessionData,$datumArr);
+}
+
+setPunkte($conn,$sessionData,$punkte);
 $pdf->Output();
 
 //Funktion um aus KW und Jahr das Montags und Freitagsdatum zu ermitteln
@@ -48,4 +61,25 @@ function getStartAndEndDate($week, $year) {
   $conn = null;
   return $data;
   }
+
+
+//Punkte abziehen
+function setPunkte($conn, $sessionData,$punkte){
+  $boolResult;
+  try {
+    $stmt = $conn->prepare("UPDATE user SET punkte = punkte - :punkte WHERE id = :id");
+    $stmt->bindParam('punkte', $punkte);
+    $stmt->bindParam('id', $sessionData['userid']);
+    $stmt->execute();
+} catch(PDOException $e)
+{
+echo "Fehler, bitte an Admin mit der genauen Fehlerbeschreibung wenden: " . $e->getMessage();
+$boolResult = false;
+}
+$conn = null;
+$boolResult = true;
+return $boolResult;
+}
+
+
 ?>

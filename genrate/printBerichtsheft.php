@@ -93,6 +93,7 @@ function printBerichtsheft($pdf,$data, $postData, $sessionData, $datumArr){
   $pdf->Cell(87.5,5, "Datum/ Unterschrift Teilnehmer",1,0,"L");
   $pdf->Cell(5,5, "", 1, 0, "L");
   $pdf->Cell(87.5,5, "Datum/ Unterschrift Ausbilder",1,0,"L");
+  ++$GLOBALS['punkte'];
 }
 
 //Themenzeile ausgeben

@@ -2,7 +2,7 @@
 include_once('./session.php'); // Session 
 include_once('./dbconfig.php'); // Datenbankanbindung
 include_once('./genrate/printBerichtsheft.php'); //import der function printberichtsheft
-include_once('./genrate/printAvNachweis.php');
+include_once('./genrate/printAvNachweis.php'); // import der function printAvNachweis
 include_once('./punkte.php'); // Biliothek um die Punkte zu setzen
 require_once('./fpdf/fpdf.php'); //importieren der fpdf bibliothek
 
@@ -47,20 +47,19 @@ function getStartAndEndDate($week, $year) {
 
 
   //Datensatz aus der Datenbank holen
-
   function getDatafromDb($kw,$jahr,$conn){
-  try {
-      $stmt = $conn->prepare("SELECT * FROM themen WHERE kw = :kw AND jahr = :jahr");
-      $stmt->bindParam('kw', $kw);
-      $stmt->bindParam('jahr', $jahr);
-      $stmt->execute();
-      $data = $stmt->fetch();
-  } catch(PDOException $e)
-  {
-  echo "Fehler, bitte an Admin mit der genauen Fehlerbeschreibung wenden: " . $e->getMessage();
-  }
-  $conn = null;
-  return $data;
+    try {
+        $stmt = $conn->prepare("SELECT * FROM themen WHERE kw = :kw AND jahr = :jahr");
+        $stmt->bindParam('kw', $kw);
+        $stmt->bindParam('jahr', $jahr);
+        $stmt->execute();
+        $data = $stmt->fetch();
+    }catch(PDOException $e)
+    {
+      echo "Fehler, bitte an Admin mit der genauen Fehlerbeschreibung wenden: " . $e->getMessage();
+    }
+    $conn = null;
+    return $data;
   }
 
 

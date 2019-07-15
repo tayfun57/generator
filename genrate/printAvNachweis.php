@@ -1,8 +1,7 @@
 <?php
-
 //Funktion um das PDF Dokument zu generieren
 function printAvNachweis($pdf,$data, $postData, $sessionData, $datumArr){
-    $name = $_SESSION['vorName'] . " " . $_SESSION['nachName']; // Name des Benutzers
+    $name = dec($_SESSION['vorName'] . " " . $_SESSION['nachName']); // Name des Benutzers
     $pdf->AddPage('L'); // Neue Seite hinzufügen
     $pdf->SetFont('Helvetica','B',14);
     $pdf->Cell(190,15,dec("Aktivitätsnachweis"),1); //280 maxwidth
@@ -21,8 +20,8 @@ function printAvNachweis($pdf,$data, $postData, $sessionData, $datumArr){
 
     $pdf->SetFont('Helvetica','',11);
     $pdf->Cell(95,15,$datumArr['week_start'] . ' - ' . $datumArr['week_end'], 1);
-    $pdf->Cell(95,15,$sessionData['vorName'], 1);
-    $pdf->Cell(90,15,$sessionData['nachName'], 1);
+    $pdf->Cell(95,15,dec($sessionData['vorName']), 1);
+    $pdf->Cell(90,15,dec($sessionData['nachName']), 1);
     $pdf->Ln();
 
     $pdf->SetFont('Helvetica','B',11);
@@ -68,12 +67,6 @@ function printAvNachweis($pdf,$data, $postData, $sessionData, $datumArr){
 
 }
 
-//Funktion um den Zeichensatz zu konvertieren, weil es Probleme mit der UTF-8 Darstellung gibt seitens der FPDF Bibliothek
-function dec($string){
-   $string = iconv('utf-8', 'cp1252',$string);
-   return $string;
-}
-
 /**
  * Funktion um die Themenspalten der jeweiligen Tage auszugeben
  */
@@ -108,5 +101,11 @@ function printThemenAv($pdf,$tag,$heading, $thema1, $thema2, $thema3){
   
         
       }
+}
+
+//Funktion um den Zeichensatz zu konvertieren, weil es Probleme mit der UTF-8 Darstellung gibt seitens der FPDF Bibliothek
+function dec($string){
+  $string = iconv('utf-8', 'cp1252',$string);
+  return $string;
 }
 ?>

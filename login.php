@@ -38,9 +38,9 @@ if(!empty($_POST['Submit'])){
     }
 }
 ?>
-
-   
+   <link rel="stylesheet" href="./css/particle.css">
         <div class="cotainer">
+        <div id="particles-js"></div>
                 <div class="row justify-content-center">
                     <div class="col-md-8">
                             <div class="card">
@@ -87,7 +87,5 @@ if(!empty($_POST['Submit'])){
                     </div>
                 </div>
             </div>
-
- 
 
 

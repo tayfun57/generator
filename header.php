@@ -10,7 +10,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="./img/favicon-256x256.png">
 </head>
 </body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-2">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark  mb-5">
         <a class="navbar-brand" href="./index.html"><img width="50px" height="50px" src="./img/logo.png"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -27,6 +27,7 @@
               <a class="nav-link" href="./gen.php">Genrate</a>
             </li>
           </ul>
+         
         </div>
 
         <?php

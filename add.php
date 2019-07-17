@@ -1,6 +1,6 @@
 <?php
-require_once("./session.php");
-require_once("./header.php"); //Navbar hinzufügen
+require("./session.php");
+require("./header.php"); //Navbar hinzufügen
 
 $jahr = date("Y");
 $kalendarWoche = date("W");
@@ -12,7 +12,7 @@ if(!empty($_POST['kw'])){
 
 ?>
 
-<title>Themen</title>
+<title>XXXs</title>
 
 
     <div class="container-fluid">
@@ -40,17 +40,17 @@ if(!empty($_POST['kw'])){
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <input type="text" class="form-control" id="hMontag"  placeholder="Überschrift" name="hMontag" >
+                            <input type="text" class="form-control" id="headingMontag"  placeholder="Überschrift" name="headingMontag" >
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <input type="text" class="form-control"  id="tMontag"  placeholder="Themen" name="tMontag" >
+                            <input type="text" class="form-control"  id="montag2"  placeholder="Themen" name="montag1" >
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <input type="text" class="form-control"  id="mDozent"  placeholder="Dozent" name="mDozent">
+                            <input type="text" class="form-control"  id="montag3"  placeholder="Thema 2" name="montag2">
                         </div>
                     </div>
                 </div>
@@ -64,12 +64,12 @@ if(!empty($_POST['kw'])){
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <input type="text" class="form-control"  id="tDienstag"  placeholder="Themen" name="tDienstag" >
+                            <input type="text" class="form-control"  id="dienstag2"  placeholder="Thema 1" name="dienstag1" >
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <input type="text" class="form-control"  id="dDienstag"  placeholder="Dozent" name="dDienstag">
+                            <input type="text" class="form-control"  id="dienstag3"  placeholder="Thema 2" name="dienstag2">
                         </div>
                     </div>
                 </div>

@@ -8,31 +8,31 @@ $punkte = 18;
 try {
 
     // SQL Query vorbereiten 
-    $stmt = $conn->prepare("INSERT INTO themen (kw, jahr, headingMontag, montag1, montag2, headingDienstag, dienstag1, dienstag2, headingMittwoch, mittwoch1, mittwoch2, headingDonnerstag, donnerstag1, donnerstag2,donnerstag3, headingFreitag, freitag1, freitag2, author)
-    VALUES (:kw, :jahr, :headingMontag, :montag1, :montag2, :headingDienstag, :dienstag1, :dienstag2, :headingMittwoch, :mittwoch1, :mittwoch2, :headingDonnerstag, :donnerstag1, :donnerstag2,:donnerstag3, :headingFreitag, :freitag1, :freitag2, :author)");
+    $stmt = $conn->prepare("INSERT INTO themen2 (kw, jahr, hMontag, tMontag, dMontag, hDienstag, tDienstag, dDienstag, hMittwoch, tMittwoch, dMittwoch, hDonnerstag, tDonnerstag, dDonnerstag, hFreitag, tFreitag, dFreitag, author)
+    VALUES (:kw, :jahr, :hMontag, :tMontag, :dMontag, :hDienstag, :tDienstag, :dDienstag, :hMittwoch, :tMittwoch, :dMittwoch, :hDonnerstag, :tDonnerstag, :dDonnerstag, :hFreitag, :tFreitag, :dFreitag, :author)");
     $stmt->bindParam(':kw', $kw);
     $stmt->bindParam(':jahr', $jahr);
 
-    $stmt->bindParam(':headingMontag', $headingMontag);
-    $stmt->bindParam(':montag1', $montag1);
-    $stmt->bindParam(':montag2', $montag2);
+    $stmt->bindParam(':hMontag', $hMontag);
+    $stmt->bindParam(':tMontag', $tMontag);
+    $stmt->bindParam(':dMontag', $dMontag);
+  
 
-    $stmt->bindParam(':headingDienstag', $headingDienstag);
-    $stmt->bindParam(':dienstag1', $dienstag1);
-    $stmt->bindParam(':dienstag2', $dienstag2);
+    $stmt->bindParam(':hDienstag', $hDienstag);
+    $stmt->bindParam(':tDienstag', $tDienstag);
+    $stmt->bindParam(':dDienstag', $dDienstag);
 
-    $stmt->bindParam(':headingMittwoch', $headingMittwoch);
-    $stmt->bindParam(':mittwoch1', $mittwoch1);
-    $stmt->bindParam(':mittwoch2', $mittwoch2);
+    $stmt->bindParam(':hMittwoch', $hMittwoch);
+    $stmt->bindParam(':tMittwoch', $tMittwoch);
+    $stmt->bindParam(':dMittwoch', $dMittwoch);
 
-    $stmt->bindParam(':headingDonnerstag', $headingDonnerstag);
-    $stmt->bindParam(':donnerstag1', $donnerstag1);
-    $stmt->bindParam(':donnerstag2', $donnerstag2);
-    $stmt->bindParam(':donnerstag3', $donnerstag3);
+    $stmt->bindParam(':hDonnerstag', $hDonnerstag);
+    $stmt->bindParam(':tDonnerstag', $tDonnerstag);
+    $stmt->bindParam(':dDonnerstag', $dDonnerstag);
 
-    $stmt->bindParam(':headingFreitag', $headingFreitag);
-    $stmt->bindParam(':freitag1', $freitag1);
-    $stmt->bindParam(':freitag2', $freitag2);
+    $stmt->bindParam(':hFreitag', $hFreitag);
+    $stmt->bindParam(':tFreitag', $tFreitag);
+    $stmt->bindParam(':dFreitag', $dFreitag);
 
     $stmt->bindParam(':author', $author);
 
@@ -40,26 +40,25 @@ try {
     $kw = $_POST['kw'];
     $jahr = $_POST['jahr'];
 
-    $headingMontag = $_POST["headingMontag"];
-    $montag1 = $_POST["montag1"];
-    $montag2 = $_POST["montag2"];
+    $hMontag = $_POST["hMontag"];
+    $tMontag = $_POST["tMontag"];
+    $dMontag = $_POST["dMontag"];
 
-    $headingDienstag = $_POST["headingDienstag"];
-    $dienstag1 = $_POST["dienstag1"];
-    $dienstag2 = $_POST["dienstag2"];
+    $hDienstag = $_POST["hDienstag"];
+    $tDienstag = $_POST["tDienstag"];
+    $dDienstag = $_POST["dDienstag"];
 
-    $headingMittwoch = $_POST["headingMittwoch"];
-    $mittwoch1 = $_POST["mittwoch1"];
-    $mittwoch2 = $_POST["mittwoch2"];
+    $hMittwoch = $_POST["hMittwoch"];
+    $tMittwoch = $_POST["tMittwoch"];
+    $dMittwoch = $_POST["dMittwoch"];
 
-    $headingDonnerstag = $_POST["headingDonnerstag"];
-    $donnerstag1 = $_POST["donnerstag1"];
-    $donnerstag2 = $_POST["donnerstag2"];
-    $donnerstag3 = $_POST["donnerstag3"];
+    $hDonnerstag = $_POST["hDonnerstag"];
+    $tDonnerstag = $_POST["tDonnerstag"];
+    $dDonnerstag = $_POST["dDonnerstag"];
 
-    $headingFreitag = $_POST["headingFreitag"];
-    $freitag1 = $_POST["freitag1"];
-    $freitag2 = $_POST["freitag2"];
+    $hFreitag = $_POST["hFreitag"];
+    $tFreitag = $_POST["tFreitag"];
+    $dFreitag = $_POST["dFreitag"];
 
     $author = $_SESSION['vorName'] . ' ' . $_SESSION['nachName'];
 
@@ -76,8 +75,7 @@ catch(PDOException $e)
     }
     //Punkte setzen nach erfolgreichen hinzufügen des Datensatzes;
     setPunkte($conn,$_SESSION,$punkte);
-    
-    $conn = null;
+    $conn = null; 
 
 ?>
 

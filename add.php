@@ -40,17 +40,17 @@ if(!empty($_POST['kw'])){
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <input type="text" class="form-control" id="headingMontag"  placeholder="Überschrift" name="headingMontag" >
+                            <input type="text" class="form-control" id="hMontag"  placeholder="Überschrift" name="hMontag" >
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <input type="text" class="form-control"  id="montag2"  placeholder="Themen" name="montag1" >
+                            <input type="text" class="form-control"  id="tMontag"  placeholder="Thema1,Thema2" name="tMontag" >
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <input type="text" class="form-control"  id="montag3"  placeholder="Thema 2" name="montag2">
+                            <input type="text" class="form-control"  id="dMontag"  placeholder="Dozent1,Dozent2" name="dMontag">
                         </div>
                     </div>
                 </div>
@@ -59,17 +59,17 @@ if(!empty($_POST['kw'])){
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <input type="text" class="form-control" id="headingDienstag"  placeholder="Überschrift" name="headingDienstag" >
+                            <input type="text" class="form-control" id="hDienstag"  placeholder="Überschrift" name="hDienstag" >
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <input type="text" class="form-control"  id="dienstag2"  placeholder="Thema 1" name="dienstag1" >
+                            <input type="text" class="form-control"  id="tDienstag"  placeholder="Thema1,Thema2" name="tDienstag" >
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <input type="text" class="form-control"  id="dienstag3"  placeholder="Thema 2" name="dienstag2">
+                            <input type="text" class="form-control"  id="dDienstag"  placeholder="Dozent1,Dozent2" name="dDienstag">
                         </div>
                     </div>
                 </div>
@@ -78,42 +78,37 @@ if(!empty($_POST['kw'])){
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <input type="text" class="form-control" id="headingMittwoch"  placeholder="Überschrift" name="headingMittwoch" >
+                            <input type="text" class="form-control" id="hMittwoch"  placeholder="Überschrift" name="hMittwoch" >
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <input type="text" class="form-control"  id="mittwoch1"  placeholder="Thema 1" name="mittwoch1" >
+                            <input type="text" class="form-control"  id="tMittwoch"  placeholder="Thema 1,Thema2" name="tMittwoch" >
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <input type="text" class="form-control"  id="mittwoch2"  placeholder="Thema 2" name="mittwoch2">
+                            <input type="text" class="form-control"  id="dMittwoch"  placeholder="Dozent1,Dozent2" name="dMittwoch">
                         </div>
                     </div>
                 </div>
 
                 <h3 class="mt-2">Donnerstag</h3>
                 <div class="row">
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <div class="form-group">
-                            <input type="text" class="form-control" id="headingDonnerstag"  placeholder="Überschrift" name="headingDonnerstag" >
+                            <input type="text" class="form-control" id="hDonnerstag"  placeholder="Überschrift" name="hDonnerstag" >
                         </div>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <div class="form-group">
-                            <input type="text" class="form-control"  id="donnerstag1"  placeholder="Thema 1" name="donnerstag1" >
+                            <input type="text" class="form-control"  id="tDonnerstag"  placeholder="Thema1,Thema2" name="tDonnerstag" >
                         </div>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <div class="form-group">
-                            <input type="text" class="form-control"  id="donnerstag2"  placeholder="Thema 2" name="donnerstag2">
+                            <input type="text" class="form-control"  id="dDonnerstag"  placeholder="Dozent1,Dozent2" name="dDonnerstag">
                         </div>
-                    </div>
-                    <div class="col-sm-3">
-                            <div class="form-group">
-                                <input type="text" class="form-control"  id="donnerstag3"  placeholder="Thema 3" name="donnerstag3">
-                            </div>
                     </div>
                 </div>
 
@@ -121,17 +116,17 @@ if(!empty($_POST['kw'])){
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <input type="text" class="form-control" id="headingFreitag"  placeholder="Überschrift" name="headingFreitag" >
+                            <input type="text" class="form-control" id="hFreitag"  placeholder="Überschrift" name="hFreitag" >
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <input type="text" class="form-control"  id="freitag1"  placeholder="Thema 1" name="freitag1" >
+                            <input type="text" class="form-control"  id="tFreitag"  placeholder="Thema 1,Thema2" name="tFreitag" >
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <input type="text" class="form-control"  id="freitag2"  placeholder="Thema 2" name="freitag2">
+                            <input type="text" class="form-control"  id="dFreitag"  placeholder="Dozent1,Dozent2" name="dFreitag">
                         </div>
                     </div>
                 </div>

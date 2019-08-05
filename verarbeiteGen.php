@@ -15,7 +15,40 @@ $postData = [   //sichern der POST Daten in einem Array
 ]; 
 
 $data = getDatafromDb($postData['kw'],$postData['jahr'],$conn); //Array für die Daten die aus der Datenbank kommen
+
+// Hier werden die Daten in das benötigte Format gebracht.
+$data2 = [
+  'id' => $data['id'],
+  'kw' => $data['kw'],
+
+  'hMontag' => $data['hMontag'],
+  'tMontag' => explodeR($data['tMontag']),
+  'dMontag' => explodeR($data['dMontag']),
+
+  'hDienstag' => $data['hDienstag'],
+  'tDienstag' => explodeR($data['tDienstag']),
+  'dDienstag' => explodeR($data['dDienstag']),
+
+  'hMittwoch' => $data['hMittwoch'],
+  'tMontag' => explodeR($data['tMittwoch']),
+  'dMontag' => explodeR($data['dMittwoch']),
+
+  'hDonnerstag' => $data['hDonnerstag'],
+  'tDonnerstag' => explodeR($data['tDonnerstag']),
+  'dDonnerstag' => explodeR($data['dDonnerstag']),
+
+  'hFreitag' => $data['hFreitag'],
+  'tFreitag' => explodeR($data['tFreitag']),
+  'dFreitag' => explodeR($data['dFreitag']),
+
+  'author' => $data['author'],
+  ];
+echo "<pre>";
+print_r($data2);
+
+
 $datumArr = getStartAndEndDate($postData['kw'],$postData['jahr']); //Start und Enddatum der Woche 
+/*
 $pdf = new FPDF('P','mm','A4'); //inizialisierung des FPDF Objektes
 $punkte = 0;
 
@@ -34,7 +67,7 @@ if(isset($postData['abNachweis']) && isset($postData['avNachweis'])){
 
 setPunkte($conn,$sessionData,$punkte);
 $pdf->Output();
-
+*/
 //Funktion um aus KW und Jahr das Montags und Freitagsdatum zu ermitteln
 function getStartAndEndDate($week, $year) {
     $dto = new DateTime();
@@ -49,7 +82,7 @@ function getStartAndEndDate($week, $year) {
   //Datensatz aus der Datenbank holen
   function getDatafromDb($kw,$jahr,$conn){
     try {
-        $stmt = $conn->prepare("SELECT * FROM themen WHERE kw = :kw AND jahr = :jahr");
+        $stmt = $conn->prepare("SELECT * FROM themen2 WHERE kw = :kw AND jahr = :jahr");
         $stmt->bindParam('kw', $kw);
         $stmt->bindParam('jahr', $jahr);
         $stmt->execute();
@@ -60,6 +93,11 @@ function getStartAndEndDate($week, $year) {
     }
     $conn = null;
     return $data;
+  }
+
+  function explodeR($themen){
+    $array = explode(",", $themen);
+    return $array;
   }
 
 

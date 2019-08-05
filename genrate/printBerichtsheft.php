@@ -97,13 +97,15 @@ function printBerichtsheft($pdf,$data, $postData, $sessionData, $datumArr){
 }
 
 //Themenzeile ausgeben
-function printThema($pdf,$tag,$heading, $thema1, $thema2, $thema3){
+function printThema($pdf,$tag,$heading,$themen,$dozent){
     $pdf->SetFont('Helvetica','B',10);
     $pdf->Cell(20.75,25,$tag,1,0,'C',false);
     $pdf->SetFont('Helvetica','',10);
     $y = $pdf->GetY();
     $x = $pdf->GetX();
     $width = 69.25;
+
+/*
     if($thema3 === 0){
       
       $pdf->MultiCell($width,5,'Thema: ' . iconv('utf-8', 'cp1252',$heading) .
@@ -129,6 +131,8 @@ function printThema($pdf,$tag,$heading, $thema1, $thema2, $thema3){
       $pdf->Cell(59.25,25,'10',1,0,'C',false);
       $pdf->Ln();
     }
+    */
+
     
   }
 ?>

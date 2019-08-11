@@ -1,5 +1,21 @@
 <?php
-$Themen = [];
+
+//Enter your code here, enjoy!
+
+$string = '<a href=“http://www.share-online.biz/dl/TZXW7MOPNY3”>Blonder.Wahnsinn.2017.German.720p.WEB.x264-WvF.Part1</a>';
+$start =  stripos($string, '>') + 1;
+$end = strrpos($string, 'WEB');
+echo $start . ' ' . $end;
+echo '<br>';
+$word = substr($string, $start, $end);
+
+echo $word;
+
+
+
+
+
+/*$Themen = [];
 $data = [
         'heading' => 'Programmierung mit Java',
         'themen' => array
@@ -43,5 +59,5 @@ for ($i=0; $i < count($Themen) ; $i++) {
     echo '<br>';
     echo $Themen[$i]['dozent'];
 
-}
+}*/
 ?>

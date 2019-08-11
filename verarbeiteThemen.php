@@ -1,7 +1,7 @@
 <?php
 include_once('./session.php');
 include_once("./dbconfig.php");
-include_once('./punkte.php');
+include_once('./inc/punkte.php');
 
 $punkte = 18;
 

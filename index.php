@@ -15,7 +15,8 @@ include_once('./header.php');
         </div>
         <div class="card-body">
             <p id="witz" class="card-text"></p>
-            <a onclick="getWitz()" class="btn btn-primary">Noch einer</a>
+            <a onclick="getWitz()" class="btn btn-primary">Noch einer</a><br><br>
+            Witze bereitgestellt von <a href="http://www.icndb.com/">www.icndb.com<a>
         </div>
     </div>
   
@@ -30,7 +31,7 @@ window.onload = function () {
 }
 
 function getWitz(){
-fetch('http://api.icndb.com/jokes/random?')
+fetch('https://api.icndb.com/jokes/random?')
   .then(response => response.json())
   .then(json => document.getElementById('witz').innerHTML = json.value.joke)
 }

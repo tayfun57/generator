@@ -3,7 +3,7 @@ include_once('./session.php'); // Session
 include_once('./dbconfig.php'); // Datenbankanbindung
 include_once('./genrate/printBerichtsheft.php'); //import der function printberichtsheft
 include_once('./genrate/printAvNachweis.php'); // import der function printAvNachweis
-include_once('./punkte.php'); // Biliothek um die Punkte zu setzen
+include_once('./inc/punkte.php'); // Biliothek um die Punkte zu setzen
 require_once('./FPDF/fpdf.php'); //importieren der fpdf bibliothek
 
 

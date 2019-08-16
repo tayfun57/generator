@@ -30,22 +30,29 @@ $data2 = [
   'hMontag' => $data['hMontag'],
   'tMontag' => explodeR($data['tMontag']),
   'dMontag' => explodeR($data['dMontag']),
+  'sMontag' => $data['sMontag'],
 
   'hDienstag' => $data['hDienstag'],
   'tDienstag' => explodeR($data['tDienstag']),
   'dDienstag' => explodeR($data['dDienstag']),
+  'sDienstag' => $data['sDienstag'],
 
   'hMittwoch' => $data['hMittwoch'],
   'tMittwoch' => explodeR($data['tMittwoch']),
   'dMittwoch' => explodeR($data['dMittwoch']),
+  'sMittwoch' => $data['sMittwoch'],
 
   'hDonnerstag' => $data['hDonnerstag'],
   'tDonnerstag' => explodeR($data['tDonnerstag']),
   'dDonnerstag' => explodeR($data['dDonnerstag']),
+  'sDonnerstag' => $data['sDonnerstag'],
+
 
   'hFreitag' => $data['hFreitag'],
   'tFreitag' => explodeR($data['tFreitag']),
   'dFreitag' => explodeR($data['dFreitag']),
+  'sFreitag' => $data['sFreitag'],
+
 
   'author' => $data['author'],
   ];

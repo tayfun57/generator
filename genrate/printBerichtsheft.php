@@ -1,6 +1,7 @@
 <?php
 function printBerichtsheft($pdf,$data, $postData, $sessionData, $datumArr){
   $tage = ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag','Freitag']; //Wochentage
+  $nachweisNr = $postData['kw'] - 14;
   $font = 'Helvetica'; //Schriftart
   $name = iconv('utf-8', 'cp1252',$_SESSION['vorName'] . " " . $_SESSION['nachName']); // Name des Benutzers
   $pdf->AddPage(); // Neue Seite hinzufügen
@@ -33,13 +34,13 @@ function printBerichtsheft($pdf,$data, $postData, $sessionData, $datumArr){
   $pdf->SetFont($font,'B',10);
   $pdf->Cell(40,10,'Nachweis-Nr.:',1,0,'L',false);
   $pdf->SetFont($font,'',10);
-  $pdf->Cell(50,10,1,1,0,'L',false);
+  $pdf->Cell(50,10,$nachweisNr,1,0,'L',false);
   $pdf->Ln();
 
   //Beruf & Von-Bis
   $pdf->SetFont($font,'B',10);
   $pdf->Cell(40,10,'Beruf:',1,0,'L',false);
-  $pdf->SetFont($font,'',10);
+  $pdf->SetFont($font,'',7);
   $pdf->Cell(50,10,$sessionData['fachrichtung'],1,0,'L',false);
   $pdf->SetFont($font,'B',10);
   $pdf->Cell(40,5,'Vom',1,0,'L',false);
@@ -68,15 +69,16 @@ function printBerichtsheft($pdf,$data, $postData, $sessionData, $datumArr){
     $heading = $data['h' . $tag];
     $thema = $data['t' . $tag];
     $dozent = $data['d' . $tag];
-    printThema($pdf,$tag,$heading,$thema,$dozent);
+    $stunden = $data['s' . $tag];
+    printThema($pdf,$tag,$heading,$thema,$dozent,$stunden);
   }
   $pdf->Ln();
   $pdf->Ln();
   
   //Datum und Unterschrift
-  $pdf->Cell(87.5,15, "Datum",1,0,"L");
+  $pdf->Cell(87.5,15, $datumArr['week_end'],1,0,"L");
   $pdf->Cell(5,15, "", 1, 0, "L");
-  $pdf->Cell(87.5,15, "Datum",1,0,"L");
+  $pdf->Cell(87.5,15, $datumArr['week_end'],1,0,"L");
   $pdf->ln();
 
   //Letzte Zeile 
@@ -88,7 +90,7 @@ function printBerichtsheft($pdf,$data, $postData, $sessionData, $datumArr){
 }
 
 //Themenzeile ausgeben
-function printThema($pdf,$tag,$heading,$themen,$dozent){
+function printThema($pdf,$tag,$heading,$themen,$dozent,$stunden){
     $font = 'Helvetica';
     $pdf->SetFont($font,'B',10);
     $pdf->Cell(20.75,25,$tag,1,0,'C',false);
@@ -104,7 +106,7 @@ function printThema($pdf,$tag,$heading,$themen,$dozent){
     $width = 30.75;
     $pdf->MultiCell($width,6.25,buildtTDozent($dozent),1,'C');
     $pdf->SetXY($x + $width, $y);
-    $pdf->Cell(59.25,25,'10',1,0,'C',false);
+    $pdf->Cell(59.25,25,$stunden,1,0,'C',false);
     $pdf->Ln();
   }
 
@@ -116,7 +118,7 @@ function printThema($pdf,$tag,$heading,$themen,$dozent){
   */
   function buildtThema($array){
     $elemente = count($array);
-    $ergebnis = '';
+    $ergebnis = NULL;
     $differenz = 4 - $elemente;
 
     for ($i=0; $i < $elemente; $i++) { 

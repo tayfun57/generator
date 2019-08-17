@@ -1,63 +1,44 @@
 <?php
+define("DOC_ROOT","/");
+//username and password of account
+$username = "DrKoks";
+$password = "Tayfun01!";
 
-//Enter your code here, enjoy!
+//set the directory for the cookie using defined document root var
+$path = DOC_ROOT;
+//build a unique path with every request to store. the info per user with custom func. I used this function to build unique paths based on member ID, that was for my use case. It can be a regular dir.
+//$path = build_unique_h($path); // this was for my use case
 
-$string = '<a href=“http://www.share-online.biz/dl/TZXW7MOPNY3”>Blonder.Wahnsinn.2017.German.720p.WEB.x264-WvF.Part1</a>';
-$start =  stripos($string, '>') + 1;
-$end = strrpos($string, 'WEB');
-echo $start . ' ' . $end;
-echo '<br>';
-$word = substr($string, $start, $end);
+//login form action url
+$url="https://koeln.pennergame.de/"; 
+$postinfo = "username=".$username."&password=".$password;
 
-echo $word;
+$cookie_file_path = $path."/cookie.txt";
 
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_HEADER, false);
+curl_setopt($ch, CURLOPT_NOBODY, false);
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
 
+curl_setopt($ch, CURLOPT_COOKIEJAR, $cookie_file_path);
+//set the cookie the site has for certain features, this is optional
+curl_setopt($ch, CURLOPT_COOKIE, "cookiename=0");
+curl_setopt($ch, CURLOPT_USERAGENT,
+    "Mozilla/5.0 (Windows; U; Windows NT 5.0; en-US; rv:1.7.12) Gecko/20050915 Firefox/1.0.7");
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_REFERER, $_SERVER['REQUEST_URI']);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 0);
 
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $postinfo);
+curl_exec($ch);
 
-
-/*$Themen = [];
-$data = [
-        'heading' => 'Programmierung mit Java',
-        'themen' => array
-        (
-            'Thema1', 'Thema2', 'Thema3',
-        ),
-        'dozent' => 'Böhler',
-        ];
-
-    $termin[] = array('Datum' => 20121208, 
-    'Ort'   => "Wangen", 
-    'Band'  => "cOoL RoCk oPaS");
-
-$termin[] = array('Datum' => 20120311, 
-    'Ort'   => "Stuttgart", 
-    'Band'  => "Die Hosenbodenband");
-
-$termin[] = array('Datum' => 20120628, 
-    'Ort'   => "Tübingen", 
-    'Band'  => "flying socks");
-
-$termin[] = array('Datum' => 20120628, 
-    'Ort'   => "Stuttgart", 
-    'Band'  => "flying socks");
-
-echo "<pre>";
-print_r ( $termin );
-
-
-array_push($Themen,$data);
-array_push($Themen,$data);
-
-echo 'Anzahl der Themen: ' . count($Themen[0]['themen']);
-
-echo '<br>';
-
-for ($i=0; $i < count($Themen) ; $i++) { 
-    echo $i;
-    echo '<br>';
-    echo $Themen[$i]['heading'];
-    echo '<br>';
-    echo $Themen[$i]['dozent'];
-
-}*/
+//page with the content I want to grab
+curl_setopt($ch, CURLOPT_URL, "https://koeln.pennergame.de/activities/");
+//do stuff with the info with DomDocument() etc
+$html = curl_exec($ch);
+curl_close($ch);
 ?>

@@ -118,6 +118,9 @@ function printThema($pdf,$tag,$heading,$themen,$dozent,$stunden){
   */
   function buildtThema($array){
     $elemente = count($array);
+    if(empty($array[0])){
+      $elemente = 0;
+    }
     $ergebnis = NULL;
     $differenz = 4 - $elemente;
 

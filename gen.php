@@ -70,7 +70,7 @@ if(!empty($_POST)){
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="krankFr">
-                                <label class="form-check-label" for="inlineCheckbox3">Mi</label>
+                                <label class="form-check-label" for="inlineCheckbox3">Fr</label>
                             </div>
                         </div>
                     </div>

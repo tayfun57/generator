@@ -72,7 +72,7 @@ function printThemenAv($pdf,$tag,$heading,$themen,$dozent){
     $y = $pdf->GetY();
     $x = $pdf->GetX();
     $width = 100;
-    $pdf->MultiCell($width,5,"Thema: " . iconv('utf-8', 'cp1252',$heading) .  buildtThemaAv($themen),1); 
+    $pdf->MultiCell($width,5,"Thema: " . iconv('utf-8', 'cp1252',$heading) . "\n" .  buildtThemaAv($themen),1); 
     $pdf->SetXY($x + $width, $y);
     $y = $pdf->GetY();
     $x = $pdf->GetX();
@@ -97,8 +97,12 @@ function dec($string){
 
 function buildtThemaAv($array){
   $elemente = count($array);
-  $ergebnis = "\n";
-  $differenz = 3 - $elemente;
+  if(empty($array[0])){
+    $elemente = 0;
+  }
+  $ergebnis = NULL;
+  $differenz = 3
+   - $elemente;
 
   for ($i=0; $i < $elemente; $i++) { 
     $ergebnis .= "\t" .iconv('utf-8', 'cp1252','•') . " " . iconv('utf-8', 'cp1252',$array[$i]) . "\n";

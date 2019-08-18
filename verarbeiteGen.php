@@ -57,11 +57,67 @@ $data2 = [
   'author' => $data['author'],
   ];
 
+  #Überprüfung ob man einen Tag krank war, wenn ja werden die Entsprechenden Werte überschrieben für jeden Tag
   if(isset($postData['krankMo'])){
     $data2['hMontag'] = 'Krankheit';
-
-  }
-
+    $elementeT = count($data2['tMontag']);
+    $elementeD = count($data2['dMontag']);
+    for ($i= $elementeT; $i  >= 0 ; $i--) { 
+      array_pop($data2['tMontag']);
+    }
+    for ($i= $elementeD; $i  >= 0 ; $i--) { 
+      array_pop($data2['dMontag']);
+    }
+   $data2['sMontag'] = 0;
+  }  
+  if(isset($postData['krankDi'])){
+    $data2['hDienstag'] = 'Krankheit';
+    $elementeT = count($data2['tDienstag']);
+    $elementeD = count($data2['dDienstag']);
+    for ($i= $elementeT; $i  >= 0 ; $i--) { 
+      array_pop($data2['tDienstag']);
+    }
+    for ($i= $elementeD; $i  >= 0 ; $i--) { 
+      array_pop($data2['dDienstag']);
+    }
+   $data2['sDienstag'] = 0;
+  }  
+  if(isset($postData['krankMi'])){
+    $data2['hMittwoch'] = 'Krankheit';
+    $elementeT = count($data2['tMittwoch']);
+    $elementeD = count($data2['dMittwoch']);
+    for ($i= $elementeT; $i  >= 0 ; $i--) { 
+      array_pop($data2['tMittwoch']);
+    }
+    for ($i= $elementeD; $i  >= 0 ; $i--) { 
+      array_pop($data2['dMittwoch']);
+    }
+   $data2['sMittwoch'] = 0;
+  }  
+  if(isset($postData['krankDo'])){
+    $data2['hDonnerstag'] = 'Krankheit';
+    $elementeT = count($data2['tDonnerstag']);
+    $elementeD = count($data2['dDonnerstag']);
+    for ($i= $elementeT; $i  >= 0 ; $i--) { 
+      array_pop($data2['tDonnerstag']);
+    }
+    for ($i= $elementeD; $i  >= 0 ; $i--) { 
+      array_pop($data2['dDonnerstag']);
+    }
+   $data2['sDonnerstag'] = 0;
+  }  
+  if(isset($postData['krankFr'])){
+    $data2['hFreitag'] = 'Krankheit';
+    $elementeT = count($data2['tFreitag']);
+    $elementeD = count($data2['dFreitag']);
+    for ($i= $elementeT; $i  >= 0 ; $i--) { 
+      array_pop($data2['tFreitag']);
+    }
+    for ($i= $elementeD; $i  >= 0 ; $i--) { 
+      array_pop($data2['dFreitag']);
+    }
+   $data2['sFreitag'] = 0;
+  }  
 
 $datumArr = getStartAndEndDate($postData['kw'],$postData['jahr']); //Start und Enddatum der Woche 
 

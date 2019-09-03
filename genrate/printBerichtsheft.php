@@ -4,7 +4,9 @@ function printBerichtsheft($pdf,$data, $postData, $sessionData, $datumArr){
   $nachweisNr = $postData['kw'] - 14;
   $font = 'Helvetica'; //Schriftart
   $name = iconv('utf-8', 'cp1252',$_SESSION['vorName'] . " " . $_SESSION['nachName']); // Name des Benutzers
+  $pdf->SetMargins(25,10,16.9); //Abstände setzen  
   $pdf->AddPage(); // Neue Seite hinzufügen
+  
 
   //Ausbildungsnachweis & Klasse/Maßname Zeile
   $pdf->SetFont($font,'B',14);
@@ -12,7 +14,7 @@ function printBerichtsheft($pdf,$data, $postData, $sessionData, $datumArr){
   $pdf->SetFont($font,'B',10);
   $pdf->Cell(40,10, iconv('utf-8', 'cp1252','Klasse/Maßnahme'),1,0,'C',false);
   $pdf->SetFont($font,'',10);
-  $pdf->Cell(50,10,'IT44',1,0,'L',false);
+  $pdf->Cell(35,10,'IT44',1,0,'L',false);
   $pdf->Ln();
 
   //Name & KW Zeile
@@ -23,7 +25,7 @@ function printBerichtsheft($pdf,$data, $postData, $sessionData, $datumArr){
   $pdf->SetFont($font,'B',10);
   $pdf->Cell(40,10,'KW:',1,0,'L',false);
   $pdf->SetFont($font,'',10);
-  $pdf->Cell(50,10,$postData['kw'],1,0,'L',false);
+  $pdf->Cell(35,10,$postData['kw'],1,0,'L',false);
   $pdf->Ln();
 
   //Ausbildungsjahr & Nachweis-Nr
@@ -34,7 +36,7 @@ function printBerichtsheft($pdf,$data, $postData, $sessionData, $datumArr){
   $pdf->SetFont($font,'B',10);
   $pdf->Cell(40,10,'Nachweis-Nr.:',1,0,'L',false);
   $pdf->SetFont($font,'',10);
-  $pdf->Cell(50,10,$nachweisNr,1,0,'L',false);
+  $pdf->Cell(35,10,$nachweisNr,1,0,'L',false);
   $pdf->Ln();
 
   //Beruf & Von-Bis
@@ -45,22 +47,24 @@ function printBerichtsheft($pdf,$data, $postData, $sessionData, $datumArr){
   $pdf->SetFont($font,'B',10);
   $pdf->Cell(40,5,'Vom',1,0,'L',false);
   $pdf->SetFont($font,'',10);
-  $pdf->Cell(50,5,$datumArr['week_start'],1,0,'L',false);
+  $pdf->Cell(35,5,$datumArr['week_start'],1,0,'L',false);
   $pdf->Ln();
-  $pdf->SetLeftMargin(100);
+
+
+  $pdf->SetLeftMargin(115);
   $pdf->SetFont($font,'B',10);
   $pdf->Cell(40,5,'Bis',1,0,'L',false);
   $pdf->SetFont($font,'',10);
-  $pdf->Cell(50,5,$datumArr['week_end'],1,0,'L',false);
-  $pdf->SetLeftMargin(10);
+  $pdf->Cell(35,5,$datumArr['week_end'],1,0,'L',false);
+  $pdf->SetLeftMargin(25);
   $pdf->Ln();
 
   //Überschriften für die einzelnen Spalten
   $pdf->SetFont($font,'B',10);
-  $pdf->Cell(20.75,5,'Tag',1,0,'L',false);
-  $pdf->Cell(69.25,5,iconv('utf-8', 'cp1252','Ausgeführte Arbeiten, Unterricht usw.'),1,0,'L',false);
-  $pdf->Cell(30.75,5,'Dozent',1,0,'L',false);
-  $pdf->Cell(59.25,5,'Stunden',1,0,'L',false);
+  $pdf->Cell(20,5,'Tag',1,0,'L',false);
+  $pdf->Cell(70,5,iconv('utf-8', 'cp1252','Ausgeführte Arbeiten, Unterricht usw.'),1,0,'L',false);
+  $pdf->Cell(30,5,'Dozent',1,0,'L',false);
+  $pdf->Cell(45,5,'Stunden',1,0,'L',false);
   $pdf->Ln();
   
   //Aufruf der Funktion printThema in einer Forschleife
@@ -76,16 +80,16 @@ function printBerichtsheft($pdf,$data, $postData, $sessionData, $datumArr){
   $pdf->Ln();
   
   //Datum und Unterschrift
-  $pdf->Cell(87.5,15, $datumArr['week_end'],1,0,"L");
+  $pdf->Cell(80,15, "",1,0,"L");
   $pdf->Cell(5,15, "", 1, 0, "L");
-  $pdf->Cell(87.5,15, $datumArr['week_end'],1,0,"L");
+  $pdf->Cell(80,15,"",1,0,"L");
   $pdf->ln();
 
   //Letzte Zeile 
   $pdf->SetFont($font,'B',10);
-  $pdf->Cell(87.5,5, "Datum/ Unterschrift Teilnehmer",1,0,"L");
+  $pdf->Cell(80,5, "Datum/ Unterschrift Teilnehmer",1,0,"L");
   $pdf->Cell(5,5, "", 1, 0, "L");
-  $pdf->Cell(87.5,5, "Datum/ Unterschrift Ausbilder",1,0,"L");
+  $pdf->Cell(80,5, "Datum/ Unterschrift Ausbilder",1,0,"L");
   $GLOBALS['punkte']--;
 }
 
@@ -93,20 +97,20 @@ function printBerichtsheft($pdf,$data, $postData, $sessionData, $datumArr){
 function printThema($pdf,$tag,$heading,$themen,$dozent,$stunden){
     $font = 'Helvetica';
     $pdf->SetFont($font,'B',10);
-    $pdf->Cell(20.75,25,$tag,1,0,'C',false);
+    $pdf->Cell(20,25,$tag,1,0,'C',false);
     $pdf->SetFont($font,'',10);
     $y = $pdf->GetY();
     $x = $pdf->GetX();
-    $width = 69.25;
+    $width = 70;
 
     $pdf->MultiCell($width,5,'Thema: ' . iconv('utf-8', 'cp1252',$heading) . "\n"  . buildtThema($themen),1); 
     $pdf->SetXY($x + $width, $y);
     $y = $pdf->GetY();
     $x = $pdf->GetX();
-    $width = 30.75;
+    $width = 30;
     $pdf->MultiCell($width,6.25,buildtTDozent($dozent),1,'C');
     $pdf->SetXY($x + $width, $y);
-    $pdf->Cell(59.25,25,$stunden,1,0,'C',false);
+    $pdf->Cell(45,25,$stunden,1,0,'C',false);
     $pdf->Ln();
   }
 

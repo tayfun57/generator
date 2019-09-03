@@ -2,6 +2,7 @@
 //Funktion um das PDF Dokument zu generieren
 
 function printAvNachweis($pdf,$data, $postData, $sessionData, $datumArr){
+  $pdf->SetLeftMargin(10);
     $tage = ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag','Freitag']; //Wochentage
     $font = 'Helvetica';
     $name = dec($_SESSION['vorName'] . " " . $_SESSION['nachName']); // Name des Benutzers
@@ -17,15 +18,15 @@ function printAvNachweis($pdf,$data, $postData, $sessionData, $datumArr){
     //Woche von - bis / Vorname und Nachname
     $pdf->SetFont($font,'B',12);
     $pdf->Cell(95,7.5,'Woche vom/bis:', 1);
-    $pdf->Cell(95,7.5,dec('Vorname:'), 1);
-    $pdf->Cell(90,7.5,dec('Name:'), 1);
+    $pdf->Cell(95,7.5,dec('Name:'), 1);
+    $pdf->Cell(90,7.5,dec('Qualifizierungsziel:'), 1);
     $pdf->Ln();
 
     //Datum von - bis & Name
     $pdf->SetFont($font,'',11);
     $pdf->Cell(95,15,$datumArr['week_start'] . ' - ' . $datumArr['week_end'], 1);
-    $pdf->Cell(95,15,dec($sessionData['vorName']), 1);
-    $pdf->Cell(90,15,dec($sessionData['nachName']), 1);
+    $pdf->Cell(95,15,$name, 1);
+    $pdf->Cell(90,15,$sessionData['fachrichtung'], 1);
     $pdf->Ln();
 
     //Kalendarwoche
@@ -101,8 +102,7 @@ function buildtThemaAv($array){
     $elemente = 0;
   }
   $ergebnis = NULL;
-  $differenz = 3
-   - $elemente;
+  $differenz = 3 - $elemente;
 
   for ($i=0; $i < $elemente; $i++) { 
     $ergebnis .= "\t" .iconv('utf-8', 'cp1252','•') . " " . iconv('utf-8', 'cp1252',$array[$i]) . "\n";

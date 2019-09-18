@@ -11,12 +11,14 @@ if(!empty($_POST['kw'])){
 
 
 ?>
-
-<title>XXXs</title>
-
+<html>
+<head>
+    <title>Eintrag hinzufügen</title>
+</head>
+<body>
 
     <div class="container-fluid">
-            <form method="POST" action="<?=$_SERVER['PHP_SELF']?>">
+            <form method="POST" action="<?=htmlspecialchars($_SERVER['PHP_SELF'])?>">
                     
                     <div class="row">
                             
@@ -161,6 +163,7 @@ if(!empty($_POST['kw'])){
                 </div>
             </form>
         </div>
-
+    <script type="text/javascript" src="./js/addValidation.js"></script>
+ 
 </body>
 </html>

@@ -29,7 +29,6 @@ include_once('./header.php');
                 Witze bereitgestellt von <a href="http://www.icndb.com/">www.icndb.com<a>
             </div>
         </div>
-        <img src="https://belikebill.ga/billgen-API.php?default=1" />
     </div>
 
 <script>

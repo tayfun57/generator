@@ -2,15 +2,7 @@
 include_once('./session.php');
 include_once('./header.php');
 ?>
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home</title>
-</head>
-<body>
+
     
 
     <div class="container">
@@ -26,9 +18,9 @@ include_once('./header.php');
             <div class="card-body">
                 <p id="witz" class="card-text"></p>
                 <a onclick="getWitz()" class="btn btn-primary">Noch einer</a><br><br>
-                Witze bereitgestellt von <a href="http://www.icndb.com/">www.icndb.com<a>
+                Witze bereitgestellt von <a href="http://www.icndb.com/">www.icndb.com</a>
             </div>
-        </div>
+        
     </div>
 
 <script>
@@ -42,6 +34,5 @@ fetch('https://api.icndb.com/jokes/random?')
   .then(json => document.getElementById('witz').innerHTML = json.value.joke)
 }
 </script>
-</body>
-</html>
+<?php include('./footer.php');?>
 

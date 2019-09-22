@@ -8,14 +8,9 @@ $kalendarWoche = date("W");
 if(!empty($_POST['kw'])){
     require('./verarbeiteThemen.php');
 }
-
-
 ?>
-<html>
-<head>
-    <title>Eintrag hinzufügen</title>
-</head>
-<body>
+
+
 
     <div class="container-fluid">
             <form method="POST" action="<?=htmlspecialchars($_SERVER['PHP_SELF'])?>">
@@ -23,14 +18,14 @@ if(!empty($_POST['kw'])){
                     <div class="row">
                             
                         <div class="col-sm-4">
-                        <h3 >KW</h3>
+                        <h3 class="darkmode">KW</h3>
                             <div class="form-group">
                                 <input type="text" class="form-control"  id="kw"  value=" <?=$kalendarWoche ?>" name="kw" >
                             </div>
                         </div>
                         
                         <div class="col-sm-4">
-                        <h3 >Jahr</h3>
+                        <h3 class="darkmode">Jahr</h3>
                             <div class="form-group">
                                 <input type="text" class="form-control"   id="jahr"  value=" <?=$jahr ?>" name="jahr" >
                             </div>
@@ -161,9 +156,6 @@ if(!empty($_POST['kw'])){
                     <button type="submit" class="btn btn-primary btn-block">Absenden</button>
                     </form>
                 </div>
-            </form>
-        </div>
-    <script type="text/javascript" src="./js/addValidation.js"></script>
+            
+    <?php include('./footer.php');?>
  
-</body>
-</html>

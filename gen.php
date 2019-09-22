@@ -19,7 +19,7 @@ if(!empty($_POST)){
             <form method="POST" action="./verarbeiteGen.php">         
                     <div class="row">    
                         <div class="col-sm-12">
-                        <h3 >KW</h3>
+                        <h3 class="darkmode">KW</h3>
                             <div class="form-group">
                                 <input type="text" class="form-control" id="kw"  value="<?=$kalendarWoche ?>" name="kw" required >
                             </div>
@@ -28,7 +28,7 @@ if(!empty($_POST)){
 
                     <div class="row">
                         <div class="col-sm-12">
-                            <h3 >Jahr</h3>
+                            <h3 class="darkmode">Jahr</h3>
                                 <div class="form-group">
                                     <input type="text" class="form-control"  id="jahr"  value="<?=$jahr ?>" name="jahr" required>
                                 </div>
@@ -81,3 +81,4 @@ if(!empty($_POST)){
             </form>
           
     </div>
+    <?php include('./footer.php');?>

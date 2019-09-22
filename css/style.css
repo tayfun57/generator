@@ -1,0 +1,18 @@
+
+
+  .darkmode--activated body{
+    color: #ecf0f1;
+  }
+  .darkmode--activated #witz{
+    color: #000;
+  }
+  .darkmode--activated .darkmode{
+    color: #fff;
+  }
+  .darkmode--activated label{
+    color: #fff;
+  }
+
+.darkmode--activated button{
+    background: #007bff;
+  }

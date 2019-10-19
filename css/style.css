@@ -12,7 +12,7 @@
   .darkmode--activated label{
     color: #fff;
   }
-
-.darkmode--activated button{
-    background: #007bff;
+  .darkmode--activated button,.btn-primary{
+    background-color: #007bff;
   }
+

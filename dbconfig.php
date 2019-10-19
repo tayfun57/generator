@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "cement-drum-transpose-companion-ungloved";
+$password = "root";
 $db = "generator";
 
 try {

@@ -18,7 +18,12 @@ $postData = [   //sichern der POST Daten in einem Array
   'krankMi' =>  @$_POST['krankMi'],
   'krankDo' =>  @$_POST['krankDo'],
   'krankFr' =>  @$_POST['krankFr']
-]; 
+];
+
+
+if(getPunkte($conn,$sessionData) < 2){
+  die('Du hast zu wenig Punkte zum generieren, bitte füge etwas in der Datenbank hinzu um Punkte zu erhalten. ' . '<br><a href="./add.php">Jetzt Eintrag hinzufügen</a>');
+};
 
 $data = getDatafromDb($postData['kw'],$postData['jahr'],$conn); //Array für die Daten die aus der Datenbank kommen
 

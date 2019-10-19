@@ -1,16 +1,15 @@
 <?php
-require("./session.php");
-require('./header.php');
+include_once("./session.php"); //Checkt ob eine Session aktiv ist
+include_once('./header.php'); // Headerdatei
+include_once('./dbconfig.php'); // Datenbankanbindung
+include_once('./inc/punkte.php'); // Punktestand abfragen
 
 $jahr = date("Y");
 $kalendarWoche = date("W");
 
 if(!empty($_POST)){
-    require("./verarbeiteGen.php");
+    include_once("./verarbeiteGen.php");
 }
-
-
-
 ?>
 <title>Dokument generieren</title>
 
@@ -45,7 +44,7 @@ if(!empty($_POST)){
                     <div class="row">
                         <div class="col-sm-6">
                         <button type="submit" class="btn btn-primary btn-block">Generieren</button>
-                        <p class="text-secondary">Für jedes generierte Dokument wird ein Punkt abgezogen</p>
+                        <p class="text-secondary">Aktueller Punktestand: <?= htmlspecialchars(getPunkte($conn,$_SESSION))?></p> 
                         </div>
                     </div>
 

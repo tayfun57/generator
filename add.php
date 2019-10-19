@@ -17,14 +17,14 @@ if(!empty($_POST['kw'])){
                     
                     <div class="row">
                             
-                        <div class="col-sm-4">
+                        <div class="col-sm-2">
                         <h3 class="darkmode">KW</h3>
                             <div class="form-group">
                                 <input type="text" class="form-control"  id="kw"  value=" <?=$kalendarWoche ?>" name="kw" >
                             </div>
                         </div>
                         
-                        <div class="col-sm-4">
+                        <div class="col-sm-2">
                         <h3 class="darkmode">Jahr</h3>
                             <div class="form-group">
                                 <input type="text" class="form-control"   id="jahr"  value=" <?=$jahr ?>" name="jahr" >
@@ -156,6 +156,6 @@ if(!empty($_POST['kw'])){
                     <button type="submit" class="btn btn-primary btn-block">Absenden</button>
                     </form>
                 </div>
-            
+    <script src="./js/addValidation.js"></script>
     <?php include('./footer.php');?>
  
